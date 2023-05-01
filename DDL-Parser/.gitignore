@@ -1,0 +1,5 @@
+.build
+TestResult.xml
+Makefile.local
+bin
+obj

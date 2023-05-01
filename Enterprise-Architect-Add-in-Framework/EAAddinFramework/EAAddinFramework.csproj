@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{4161DD26-375F-4744-BA96-B70366E19A78}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>EAAddinFramework</RootNamespace>
+    <AssemblyName>EAAddinFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Design, Version=4.4.1.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Docking, Version=4.4.1.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.4.1.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Navigator.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Ribbon, Version=4.4.1.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.4.1.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.4.1.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Workspace.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\CsvHelper.7.1.1\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.EA">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Sparx Systems\EA\Interop.EA.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Schema, Version=3.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\Newtonsoft.Json.Schema.3.0.13\lib\net45\Newtonsoft.Json.Schema.dll</HintPath>
+    </Reference>
+    <Reference Include="ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\ObjectListView.Official.2.9.1\lib\net20\ObjectListView.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Enterprise-Architect-Toolpack\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Databases\BaseDataType.cs" />
+    <Compile Include="Databases\CheckConstraint.cs" />
+    <Compile Include="Databases\Column.cs" />
+    <Compile Include="Databases\Compare\EADatabaseComparer.cs" />
+    <Compile Include="Databases\Compare\EADatabaseItemComparison.cs" />
+    <Compile Include="Databases\Constraint.cs" />
+    <Compile Include="Databases\Database.cs" />
+    <Compile Include="Databases\DatabaseFactory.cs" />
+    <Compile Include="Databases\DatabaseItem.cs" />
+    <Compile Include="Databases\DataType.cs" />
+    <Compile Include="Databases\ForeignKey.cs" />
+    <Compile Include="Databases\PrimaryKey.cs" />
+    <Compile Include="Databases\Index.cs" />
+    <Compile Include="Databases\Strategy\DatabaseItemStrategy.cs" />
+    <Compile Include="Databases\Strategy\DB2\DB2ColumnStrategy.cs" />
+    <Compile Include="Databases\Strategy\DB2\DB2ForeignKeyStrategy.cs" />
+    <Compile Include="Databases\Strategy\DB2\DB2PrimaryKeyStrategy.cs" />
+    <Compile Include="Databases\Strategy\DB2\DB2Strategy.cs" />
+    <Compile Include="Databases\Strategy\DB2\DB2StrategyFactory.cs" />
+    <Compile Include="Databases\Strategy\DB2\DB2TableStrategy.cs" />
+    <Compile Include="Databases\Strategy\StrategyFactory.cs" />
+    <Compile Include="Databases\Table.cs" />
+    <Compile Include="Databases\Transformation\DB2\DB2ColumnTransformer.cs" />
+    <Compile Include="Databases\Transformation\DB2\DB2DatabaseTransformer.cs" />
+    <Compile Include="Databases\Transformation\DB2\DB2ForeignKeyTransformer.cs" />
+    <Compile Include="Databases\Transformation\DB2\DB2PrimaryKeyTransformer.cs" />
+    <Compile Include="Databases\Transformation\DB2\DB2TableTransformer.cs" />
+    <Compile Include="Databases\Transformation\EAColumnTransformer.cs" />
+    <Compile Include="Databases\Transformation\EADatabaseItemTransformer.cs" />
+    <Compile Include="Databases\Transformation\EADatabaseTransformer.cs" />
+    <Compile Include="Databases\Transformation\EAForeignKeyTransformer.cs" />
+    <Compile Include="Databases\Transformation\EAPrimaryKeyTransformer.cs" />
+    <Compile Include="Databases\Transformation\EATableTransformer.cs" />
+    <Compile Include="Databases\Transformation\NameTranslation.cs" />
+    <Compile Include="Databases\Transformation\NameTranslator.cs" />
+    <Compile Include="Databases\Transformation\TranslatedItem.cs" />
+    <Compile Include="Databases\View.cs" />
+    <Compile Include="EAAddinBase.cs" />
+    <Compile Include="EASpecific\EAAddin.cs" />
+    <Compile Include="EASpecific\ScriptGroup.cs" />
+    <Compile Include="EASpecific\ScriptType.cs" />
+    <Compile Include="EASpecific\JavaScriptLanguage.cs" />
+    <Compile Include="EASpecific\JavaScriptLanguageBase.cs" />
+    <Compile Include="EASpecific\JScriptLanguage.cs" />
+    <Compile Include="EASpecific\Script.cs" />
+    <Compile Include="EASpecific\ScriptFunction.cs" />
+    <Compile Include="EASpecific\ScriptLanguage.cs" />
+    <Compile Include="EASpecific\User.cs" />
+    <Compile Include="EASpecific\VBScriptLanguage.cs" />
+    <Compile Include="EASpecific\WorkingSet.cs" />
+    <Compile Include="EAWrappers\Abstraction.cs" />
+    <Compile Include="EAWrappers\Action.cs" />
+    <Compile Include="EAWrappers\ActionKind.cs" />
+    <Compile Include="EAWrappers\Activity.cs" />
+    <Compile Include="EAWrappers\ActivityDiagram.cs" />
+    <Compile Include="EAWrappers\AggregationKind.cs" />
+    <Compile Include="EAWrappers\Association.cs" />
+    <Compile Include="EAWrappers\AssociationClass.cs" />
+    <Compile Include="EAWrappers\AssociationEnd.cs" />
+    <Compile Include="EAWrappers\Attribute.cs" />
+    <Compile Include="EAWrappers\AttributeConstraint.cs" />
+    <Compile Include="EAWrappers\AttributeTag.cs" />
+    <Compile Include="EAWrappers\AttributeWrapper.cs" />
+    <Compile Include="EAWrappers\BehaviorStateMachines\Event.cs" />
+    <Compile Include="EAWrappers\BehaviorStateMachines\FinalState.cs" />
+    <Compile Include="EAWrappers\BehaviorStateMachines\PseudoState.cs" />
+    <Compile Include="EAWrappers\BehaviorStateMachines\Region.cs" />
+    <Compile Include="EAWrappers\BehaviorStateMachines\State.cs" />
+    <Compile Include="EAWrappers\BehaviorStateMachines\StateMachine.cs" />
+    <Compile Include="EAWrappers\BehaviorStateMachines\Transition.cs" />
+    <Compile Include="EAWrappers\BehaviorStateMachines\Trigger.cs" />
+    <Compile Include="EAWrappers\BehaviorStateMachines\Vertex.cs" />
+    <Compile Include="EAWrappers\CallOperationAction.cs" />
+    <Compile Include="EAWrappers\Class.cs" />
+    <Compile Include="EAWrappers\ClassDiagram.cs" />
+    <Compile Include="EAWrappers\CommunicationDiagram.cs" />
+    <Compile Include="EAWrappers\ComponentDiagram.cs" />
+    <Compile Include="EAWrappers\CompositeStructureDiagram.cs" />
+    <Compile Include="EAWrappers\Constraint.cs" />
+    <Compile Include="EAWrappers\DataType.cs" />
+    <Compile Include="EAWrappers\EnumerationLiteral.cs" />
+    <Compile Include="EAWrappers\InformationFlow.cs" />
+    <Compile Include="EAWrappers\InformationItem.cs" />
+    <Compile Include="EAWrappers\InteractionFragment.cs" />
+    <Compile Include="EAWrappers\LinkStyle.cs" />
+    <Compile Include="EAWrappers\LiteralBoolean.cs" />
+    <Compile Include="EAWrappers\LiteralInteger.cs" />
+    <Compile Include="EAWrappers\LiteralNull.cs" />
+    <Compile Include="EAWrappers\LiteralString.cs" />
+    <Compile Include="EAWrappers\LiteralUnlimitedNatural.cs" />
+    <Compile Include="EAWrappers\Multiplicity.cs" />
+    <Compile Include="EAWrappers\OpaqueExpression.cs" />
+    <Compile Include="EAWrappers\Property.cs" />
+    <Compile Include="EAWrappers\ProxyConnector.cs" />
+    <Compile Include="EAWrappers\RepositoryType.cs" />
+    <Compile Include="EAWrappers\DeploymentDiagram.cs" />
+    <Compile Include="EAWrappers\Enumeration.cs" />
+    <Compile Include="EAWrappers\InteractionOverviewDiagram.cs" />
+    <Compile Include="EAWrappers\ObjectDiagram.cs" />
+    <Compile Include="EAWrappers\PackageDiagram.cs" />
+    <Compile Include="EAWrappers\ParameterTag.cs" />
+    <Compile Include="EAWrappers\ProfileDiagram.cs" />
+    <Compile Include="EAWrappers\RelationTag.cs" />
+    <Compile Include="EAWrappers\ConnectorWrapper.cs" />
+    <Compile Include="EAWrappers\Dependency.cs" />
+    <Compile Include="EAWrappers\DescriptionComment.cs" />
+    <Compile Include="EAWrappers\Diagram.cs" />
+    <Compile Include="EAWrappers\DiagramLinkWrapper.cs" />
+    <Compile Include="EAWrappers\DiagramObjectWrapper.cs" />
+    <Compile Include="EAWrappers\Element.cs" />
+    <Compile Include="EAWrappers\ElementTag.cs" />
+    <Compile Include="EAWrappers\ElementWrapper.cs" />
+    <Compile Include="EAWrappers\Factory.cs" />
+    <Compile Include="EAWrappers\Generalization.cs" />
+    <Compile Include="EAWrappers\Interaction.cs" />
+    <Compile Include="EAWrappers\Interface.cs" />
+    <Compile Include="EAWrappers\InterfaceRealization.cs" />
+    <Compile Include="EAWrappers\Message.cs" />
+    <Compile Include="EAWrappers\Model.cs" />
+    <Compile Include="EAWrappers\NoteComment.cs" />
+    <Compile Include="EAWrappers\Operation.cs" />
+    <Compile Include="EAWrappers\OperationTag.cs" />
+    <Compile Include="EAWrappers\Package.cs" />
+    <Compile Include="EAWrappers\Parameter.cs" />
+    <Compile Include="EAWrappers\ParameterDirectionKind.cs" />
+    <Compile Include="EAWrappers\ParameterReturnType.cs" />
+    <Compile Include="EAWrappers\ParameterWrapper.cs" />
+    <Compile Include="EAWrappers\PrimitiveType.cs" />
+    <Compile Include="EAWrappers\Realization.cs" />
+    <Compile Include="EAWrappers\RoleTag.cs" />
+    <Compile Include="EAWrappers\RootPackage.cs" />
+    <Compile Include="EAWrappers\SequenceDiagram.cs" />
+    <Compile Include="EAWrappers\StateMachineDiagram.cs" />
+    <Compile Include="EAWrappers\Stereotype.cs" />
+    <Compile Include="EAWrappers\TaggedValue.cs" />
+    <Compile Include="EAWrappers\TimingDiagram.cs" />
+    <Compile Include="EAWrappers\UnlimitedNatural.cs" />
+    <Compile Include="EAWrappers\Usage.cs" />
+    <Compile Include="EAWrappers\UseCaseDiagram.cs" />
+    <Compile Include="EAWrappers\ValueSpecification.cs" />
+    <Compile Include="EAWrappers\VisibilityKind.cs" />
+    <Compile Include="EAWrappers\WindowWrapper.cs" />
+    <Compile Include="Licensing\License.cs" />
+    <Compile Include="Mapping\AssociationMappingNode.cs" />
+    <Compile Include="Mapping\AttributeMappingNode.cs" />
+    <Compile Include="Mapping\ConnectorMapping.cs" />
+    <Compile Include="Mapping\CSVMappingRecord.cs" />
+    <Compile Include="Mapping\ElementMappingNode.cs" />
+    <Compile Include="Mapping\Mapping.cs" />
+    <Compile Include="Mapping\MappingFactory.cs" />
+    <Compile Include="Mapping\MappingLogic.cs" />
+    <Compile Include="Mapping\MappingNode.cs" />
+    <Compile Include="Mapping\MappingSet.cs" />
+    <Compile Include="Mapping\MappingSettings.cs" />
+    <Compile Include="Mapping\TaggedValueMapping.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SchemaBuilder\EASchemaAssociation.cs" />
+    <Compile Include="SchemaBuilder\EASchemaBuilderFactory.cs" />
+    <Compile Include="SchemaBuilder\EASchema.cs" />
+    <Compile Include="SchemaBuilder\EASchemaElement.cs" />
+    <Compile Include="SchemaBuilder\EASchemaLiteral.cs" />
+    <Compile Include="SchemaBuilder\EASchemaProperty.cs" />
+    <Compile Include="SchemaBuilder\EASchemaPropertyWrapper.cs" />
+    <Compile Include="Utilities\AbortableBackgroundWorker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilities\AddinConfig.cs" />
+    <Compile Include="Utilities\AddinSettings.cs" />
+    <Compile Include="Utilities\AddinSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\AddinSettingsForm.Designer.cs">
+      <DependentUpon>AddinSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\AddinSettingsFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\EAOutputLogger.cs" />
+    <Compile Include="Utilities\EASearchOutput.cs" />
+    <Compile Include="Utilities\EventPropertiesHelper.cs" />
+    <Compile Include="Utilities\KeyValuePairsHelper.cs" />
+    <Compile Include="Utilities\Logger.cs" />
+    <Compile Include="Utilities\LogTypeEnum.cs" />
+    <Compile Include="Utilities\ScriptingInteropHelper.cs" />
+    <Compile Include="Utilities\TransformationILWriter.cs" />
+    <Compile Include="WorkTracking\Project.cs" />
+    <Compile Include="WorkTracking\TFS\GetAuthorizationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkTracking\TFS\GetAuthorizationForm.Designer.cs" />
+    <Compile Include="WorkTracking\TFS\ListOfWorkItemResponse.cs" />
+    <Compile Include="WorkTracking\TFS\TFSProject.cs" />
+    <Compile Include="WorkTracking\TFS\TFSHelperClasses.cs" />
+    <Compile Include="WorkTracking\TFS\TFSSettings.cs" />
+    <Compile Include="WorkTracking\TFS\TFSWorkItem.cs" />
+    <Compile Include="WorkTracking\TFS\WorkItemPatchResponse.cs" />
+    <Compile Include="WorkTracking\WorkItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Utilities\AddinSettingsForm.resx">
+      <DependentUpon>AddinSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkTracking\TFS\GetAuthorizationForm.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="EAWrappers\README" />
+    <None Include="Files\LogoFINAL.ico" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DDL-Parser\DDL-Parser.csproj">
+      <Project>{52156b88-f7a1-4007-b0e6-7e0ecc8b0b88}</Project>
+      <Name>DDL-Parser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UML-Tooling-Framework\DatabaseFramework\DatabaseFramework.csproj">
+      <Project>{033c0df8-5bb0-496f-b024-4443b9fcf2dc}</Project>
+      <Name>DatabaseFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UML-Tooling-Framework\MappingFramework\MappingFramework.csproj">
+      <Project>{b56abb9c-5ac0-4621-97b4-92d59c976f2f}</Project>
+      <Name>MappingFramework</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UML-Tooling-Framework\SchemaBuilderFramework\SchemaBuilderFramework.csproj">
+      <Project>{5C63DAE8-2567-4270-8F7C-CEB8396B73D3}</Project>
+      <Name>SchemaBuilderFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UML-Tooling-Framework\UMLToolingFramework\UMLToolingFramework.csproj">
+      <Project>{0fc55607-c9d0-442d-941c-f23ad00cb318}</Project>
+      <Name>UMLToolingFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UML-Tooling-Framework\WorkTrackingFramework\WorkTrackingFramework.csproj">
+      <Project>{5e06f0d2-b40a-45a9-be8f-07dcda11ef9c}</Project>
+      <Name>WorkTrackingFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="MSScriptControl">
+      <Guid>{0E59F1D2-1FBE-11D0-8FF2-00A0D10038BC}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <Import Project="..\..\Enterprise-Architect-Toolpack\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\Enterprise-Architect-Toolpack\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\Enterprise-Architect-Toolpack\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Enterprise-Architect-Toolpack\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+</Project>

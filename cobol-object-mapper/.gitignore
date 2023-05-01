@@ -1,0 +1,6 @@
+tmp
+.build
+bin
+obj
+TestResult.xml
+.DS_Store

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*"
+		Name="EA-Matic"
+		Language="1033"
+		Version="2.0.0.0"
+		UpgradeCode="CC366BB8-A704-42D6-8F2A-4B418CCBD31D"
+		Manufacturer="Geert Bellekens">
+		<Package Description="Installs EA-Matic v2.0.0.0 to this computer"
+			Comments="Requires Enterprise Architect to function."
+			InstallerVersion="200"
+			Compressed="yes"/>
+		
+		<!-- icon for the installer -->
+		<Icon Id="scriptAddin_icon.exe" SourceFile="..\EAScriptAddin\Files\ScriptAddinIcon.ico"/>
+		<Property Id="ARPPRODUCTICON" Value="scriptAddin_icon.exe" />
+		
+		<!--
+			Source media for the installation. 
+ 			Specifies a single cab file to be embedded in the installer's .msi. 
+		-->
+		<Media Id="1" Cabinet="contents.cab" EmbedCab="yes" CompressionLevel="high"/>
+		
+		<Upgrade Id="CC366BB8-A704-42D6-8F2A-4B418CCBD31D">
+      	<UpgradeVersion Minimum="2.0.0.0"
+                      IncludeMinimum="no"
+                      OnlyDetect="yes"
+                      Language="1033"
+                      Property="NEWPRODUCTFOUND" />
+     	<UpgradeVersion Minimum="1.0.0.0"
+                      IncludeMinimum="yes"
+                      Maximum="2.0.0.0"
+                      IncludeMaximum="no"
+                      Language="1033"
+                      Property="UPGRADEFOUND" />
+    	</Upgrade>
+		
+		<!-- Installation directory and files are defined in Files.wxs -->
+		<Directory Id="TARGETDIR" Name="SourceDir"/>
+		
+		<Feature Id="Complete"
+		         Title="EA-Matic"
+		         Description="Addin for Sparx Enterprise Architect that allows to use add-in functionality with scripting"
+		         Level="1">
+		         <ComponentRef Id="EAScriptingAddinFiles"/>
+				 <ComponentRef Id="EAScriptingRegistryEntries"/>
+		</Feature>
+		
+		<!-- Check for .Net framework 4.0 Client-->
+		<Property Id="NETFRAMEWORK40CL">
+		    <RegistrySearch Id="NetFramework40Cl"
+		                    Root="HKLM"
+		                    Key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client"
+             				Name="Install"
+                    		Type="raw" />
+		</Property>
+		<!-- Check for .Net framework 4.0 Full-->
+		<Property Id="NETFRAMEWORK40FULL">
+		    <RegistrySearch Id="NetFramework40FULL"
+		                    Root="HKLM"
+		                    Key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client"
+             				Name="Install"
+                    		Type="raw" />
+		</Property>
+		
+		<Condition Message="This application requires .NET Framework v4. Please install the .NET Framework then run this installer again.">
+   		 <![CDATA[Installed OR NETFRAMEWORK40CL OR NETFRAMEWORK40FULL]]>
+		</Condition>
+		
+		<!--
+ 			Using the Wix UI library.
+
+			WixUI_Minimal is the most basic of the WixUI stock dialog sets.
+ 			Its sole dialog combines the welcome and license-agreement 
+			dialogs and omits the feature customization dialog. 
+			WixUI_Minimal is appropriate when your product has no optional 
+			features.
+ 		-->
+		<UIRef Id="WixUI_Minimal"/>
+		<!-- Prevent downgrading -->
+	    <CustomAction Id="PreventDowngrading" Error="Newer version already installed." />
+	 
+	    <!-- Sequences -->
+	    <InstallExecuteSequence>
+	      <Custom Action="PreventDowngrading" After="FindRelatedProducts">NEWPRODUCTFOUND</Custom>
+	      <RemoveExistingProducts After="InstallValidate" />
+	    </InstallExecuteSequence>
+	   
+	    <InstallUISequence>
+	      <Custom Action="PreventDowngrading" After="FindRelatedProducts">NEWPRODUCTFOUND</Custom>
+	    </InstallUISequence>
+	</Product>
+</Wix>
