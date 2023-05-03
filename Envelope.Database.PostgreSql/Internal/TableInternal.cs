@@ -48,7 +48,7 @@ namespace Envelope.Database.Internal
 					var column = Columns.FirstOrDefault(x => x.Name == columnName);
 					if (column == null)
 					{
-						Schema.Model.AddError(ValidationMessageFactory.Error($"Invalid PK {Schema.Name}.{Name}.{PrimaryKey.Name} | Column = {columnName}"));
+						Schema.Model.AddError(ValidationMessageFactory.Error($"Invalid PK {Schema.Name}.{Name}: {PrimaryKey.Name} | Column = {columnName}"));
 						continue;
 					}
 
@@ -71,7 +71,7 @@ namespace Envelope.Database.Internal
 						var column = Columns.FirstOrDefault(x => x.Name == columnName);
 						if (column == null)
 						{
-							Schema.Model.AddError(ValidationMessageFactory.Error($"Invalid UniqueConstraint {Schema.Name}.{Name}.{uq.Name} | Column = {columnName}"));
+							Schema.Model.AddError(ValidationMessageFactory.Error($"Invalid UniqueConstraint {Schema.Name}.{Name}: {uq.Name} | Column = {columnName}"));
 							continue;
 						}
 
@@ -90,7 +90,7 @@ namespace Envelope.Database.Internal
 						var column = Columns.FirstOrDefault(x => x.Name == columnName);
 						if (column == null)
 						{
-							Schema.Model.AddError(ValidationMessageFactory.Error($"Invalid Index {Schema.Name}.{Name}.{idx.Name} | Column = {columnName}"));
+							Schema.Model.AddError(ValidationMessageFactory.Error($"Invalid Index {Schema.Name}.{Name}: {idx.Name} | Column = {columnName}"));
 							continue;
 						}
 

@@ -9,7 +9,7 @@ namespace Envelope.Database.Internal
 		public SchemaInternal Schema { get; }
 
 		public string Name => Config.Name;
-		public string Alias => Schema.Name;
+		public string Alias => Schema.Alias;
 		public int? Id => Config.Id;
 		public string Definition => Config.Definition;
 

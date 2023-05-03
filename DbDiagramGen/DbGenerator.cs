@@ -149,7 +149,7 @@ namespace DbDiagramGen
 
 			if (dbSchema.Views.Any())
 			{
-				_viewSchemaToPackageMap.TryGetValue(dbSchema.Name, out var eaPackage);
+				_viewSchemaToPackageMap.TryGetValue(dbSchema.Alias, out var eaPackage);
 				if (eaPackage == null)
 				{
 					_sb.AppendLine($"{nameof(CreateDiagram)} views: {nameof(Envelope.Database.ISchema)} {dbSchema.Name} was not found.");
@@ -593,7 +593,7 @@ namespace DbDiagramGen
 				return;
 			}
 
-			if (!_diagramElements.TryGetValue(dbTable.Schema.Alias, out var currentTableDiagrams))
+			if (!_diagramElements.TryGetValue(dbTable.Schema.Alias, out var currentDiagramTables))
 			{
 				_sb.AppendLine($"{nameof(CreateReferences)}: #diagram# {dbTable.Schema.Alias} was not found.");
 				return;
@@ -609,7 +609,7 @@ namespace DbDiagramGen
 				}
 
 				//if target table is not in the same diagram as source table, add to the diagram
-				if (!currentTableDiagrams.Contains(foreignKey.ToColumn.Table.Name))
+				if (!currentDiagramTables.Contains(foreignKey.ToColumn.Table.Name))
 				{
 					EA.DiagramObject newDiagramObject = eaDiagram.DiagramObjects.AddNew("", "");
 					newDiagramObject.ElementID = targetTableElement.ElementID;
@@ -624,7 +624,7 @@ namespace DbDiagramGen
 						return;
 					}
 
-					currentTableDiagrams.Add(foreignKey.ToColumn.Table.Name);
+					currentDiagramTables.Add(foreignKey.ToColumn.Table.Name);
 				}
 
 				EA.Connector eaConnector = 

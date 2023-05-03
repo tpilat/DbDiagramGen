@@ -72,7 +72,7 @@ namespace Envelope.Database.Internal
 								var fromColumn = fromTable.Columns.FirstOrDefault(x => x.Name == foreignKey.Column);
 								if (fromColumn == null)
 								{
-									AddError(ValidationMessageFactory.Error($"Invalid FK: {fromSchema.Name}.{fromTable.Name}.{foreignKey.Name} | {nameof(fromColumn)} == null"));
+									AddError(ValidationMessageFactory.Error($"Invalid FK: {fromSchema.Name}.{fromTable.Name}: {foreignKey.Name} | {nameof(fromColumn)} == null"));
 									continue;
 								}
 
@@ -81,7 +81,7 @@ namespace Envelope.Database.Internal
 								var toColumn = toTable?.Columns.FirstOrDefault(x => x.Name == foreignKey.ForeignColumnName);
 								if (toColumn == null)
 								{
-									AddError(ValidationMessageFactory.Error($"Invalid FK: {fromSchema.Name}.{fromTable.Name}.{foreignKey.Name} | {nameof(toColumn)} == null"));
+									AddError(ValidationMessageFactory.Error($"Invalid FK: {fromSchema.Name}.{fromTable.Name}: {foreignKey.Name} | {nameof(toColumn)} == null"));
 									continue;
 								}
 

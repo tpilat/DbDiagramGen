@@ -35,8 +35,8 @@ namespace DbDiagramGen.Forms
 			this.ButtonBrowse = new System.Windows.Forms.Button();
 			this.FilePathLabel = new System.Windows.Forms.Label();
 			this.MainPanel = new System.Windows.Forms.Panel();
-			this.UseAutoRoutingLineStyleCheckBox = new System.Windows.Forms.CheckBox();
 			this.LoadButton = new System.Windows.Forms.Button();
+			this.UseAutoRoutingLineStyleCheckBox = new System.Windows.Forms.CheckBox();
 			this.MainPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -94,6 +94,16 @@ namespace DbDiagramGen.Forms
 			this.MainPanel.Size = new System.Drawing.Size(558, 139);
 			this.MainPanel.TabIndex = 4;
 			// 
+			// LoadButton
+			// 
+			this.LoadButton.Location = new System.Drawing.Point(246, 79);
+			this.LoadButton.Name = "LoadButton";
+			this.LoadButton.Size = new System.Drawing.Size(166, 39);
+			this.LoadButton.TabIndex = 10;
+			this.LoadButton.Text = "DEBUG: Load EA Repository";
+			this.LoadButton.UseVisualStyleBackColor = true;
+			this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
+			// 
 			// UseAutoRoutingLineStyleCheckBox
 			// 
 			this.UseAutoRoutingLineStyleCheckBox.AutoSize = true;
@@ -103,16 +113,6 @@ namespace DbDiagramGen.Forms
 			this.UseAutoRoutingLineStyleCheckBox.TabIndex = 9;
 			this.UseAutoRoutingLineStyleCheckBox.Text = "Use auto-routing line style";
 			this.UseAutoRoutingLineStyleCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// LoadButton
-			// 
-			this.LoadButton.Location = new System.Drawing.Point(304, 79);
-			this.LoadButton.Name = "LoadButton";
-			this.LoadButton.Size = new System.Drawing.Size(108, 39);
-			this.LoadButton.TabIndex = 10;
-			this.LoadButton.Text = "Load";
-			this.LoadButton.UseVisualStyleBackColor = true;
-			this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
 			// 
 			// MainForm
 			// 
