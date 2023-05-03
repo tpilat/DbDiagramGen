@@ -36,6 +36,7 @@ namespace DbDiagramGen.Forms
 			this.FilePathLabel = new System.Windows.Forms.Label();
 			this.MainPanel = new System.Windows.Forms.Panel();
 			this.UseAutoRoutingLineStyleCheckBox = new System.Windows.Forms.CheckBox();
+			this.LoadButton = new System.Windows.Forms.Button();
 			this.MainPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -81,6 +82,7 @@ namespace DbDiagramGen.Forms
 			// 
 			// MainPanel
 			// 
+			this.MainPanel.Controls.Add(this.LoadButton);
 			this.MainPanel.Controls.Add(this.UseAutoRoutingLineStyleCheckBox);
 			this.MainPanel.Controls.Add(this.ButtonBrowse);
 			this.MainPanel.Controls.Add(this.FilePathLabel);
@@ -101,6 +103,16 @@ namespace DbDiagramGen.Forms
 			this.UseAutoRoutingLineStyleCheckBox.TabIndex = 9;
 			this.UseAutoRoutingLineStyleCheckBox.Text = "Use auto-routing line style";
 			this.UseAutoRoutingLineStyleCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// LoadButton
+			// 
+			this.LoadButton.Location = new System.Drawing.Point(304, 79);
+			this.LoadButton.Name = "LoadButton";
+			this.LoadButton.Size = new System.Drawing.Size(108, 39);
+			this.LoadButton.TabIndex = 10;
+			this.LoadButton.Text = "Load";
+			this.LoadButton.UseVisualStyleBackColor = true;
+			this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
 			// 
 			// MainForm
 			// 
@@ -130,5 +142,6 @@ namespace DbDiagramGen.Forms
 		private System.Windows.Forms.Label FilePathLabel;
 		private System.Windows.Forms.Panel MainPanel;
 		private System.Windows.Forms.CheckBox UseAutoRoutingLineStyleCheckBox;
+		private System.Windows.Forms.Button LoadButton;
 	}
 }

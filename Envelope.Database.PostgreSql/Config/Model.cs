@@ -50,7 +50,7 @@ namespace Envelope.Database.Config
 			};
 
 		public static Model LoadFromJson(string json)
-			=> System.Text.Json.JsonSerializer.Deserialize<Model>(json);
+			=> Newtonsoft.Json.JsonConvert.DeserializeObject<Model>(json);
 
 		public override string ToString()
 		{

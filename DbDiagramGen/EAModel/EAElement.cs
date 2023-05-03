@@ -82,6 +82,80 @@ namespace DbDiagramGen.EAModel
 			if (WrappedElement.ConstraintsEx != null)
 				foreach (global::EA.IDualConstraint constraintEx in WrappedElement.ConstraintsEx)
 					ConstraintsEx.Add(Repository.AddOrGetEAConstraint(constraintEx));
+
+			if (WrappedElement.Methods != null)
+				foreach (global::EA.IDualMethod method in WrappedElement.Methods)
+				{
+					var stereotype = method.Stereotype;
+					if (stereotype == "PK")
+					{
+						var count = 0;
+						if (method.Parameters != null)
+							foreach (global::EA.IDualParameter parameter in method.Parameters)
+								count++;
+
+						if (1 < count)
+						{
+							Console.WriteLine();
+						}
+					}
+					else if (stereotype == "index")
+					{
+						var count = 0;
+						if (method.Parameters != null)
+							foreach (global::EA.IDualParameter parameter in method.Parameters)
+								count++;
+
+						if (1 < count)
+						{
+							Console.WriteLine();
+						}
+					}
+					else if (stereotype == "unique")
+					{
+						var count = 0;
+						if (method.Parameters != null)
+							foreach (global::EA.IDualParameter parameter in method.Parameters)
+								count++;
+
+						if (1 < count)
+						{
+							Console.WriteLine();
+						}
+					}
+					else if (stereotype == "FK")
+					{
+						var count = 0;
+						if (method.Parameters != null)
+							foreach (global::EA.IDualParameter parameter in method.Parameters)
+								count++;
+
+						if (1 < count)
+						{
+							Console.WriteLine();
+						}
+					}
+					else
+					{
+						var count = 0;
+						if (method.Parameters != null)
+							foreach (global::EA.IDualParameter parameter in method.Parameters)
+								count++;
+
+						if (1 < count)
+						{
+							Console.WriteLine();
+						}
+					}
+				}
+
+			if (WrappedElement.CustomProperties != null)
+				foreach (global::EA.ICustomProperty customProperty in WrappedElement.CustomProperties)
+					Console.WriteLine(customProperty);
+
+			if (WrappedElement.Properties != null)
+				foreach (global::EA.Property property in WrappedElement.Properties)
+					Console.WriteLine(property);
 		}
 
 		private bool _referencesSet;

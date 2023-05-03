@@ -1,5 +1,4 @@
-﻿using Envelope.Database;
-using Envelope.Database.Internal;
+﻿using Envelope.Database.Internal;
 using System;
 using System.IO;
 using System.Text;
@@ -74,6 +73,13 @@ namespace DbDiagramGen.Forms
 				if (openFileDialog.ShowDialog() == DialogResult.OK)
 					FilePathTextBox.Text = openFileDialog.FileName;
 			}
+		}
+
+		private void LoadButton_Click(object sender, EventArgs e)
+		{
+			var eaRepo = new EAModel.EARepository(_repository);
+			eaRepo.Build();
+			return;
 		}
 	}
 }
