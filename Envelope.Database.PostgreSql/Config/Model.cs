@@ -52,6 +52,9 @@ namespace Envelope.Database.Config
 		public static Model LoadFromJson(string json)
 			=> Newtonsoft.Json.JsonConvert.DeserializeObject<Model>(json);
 
+		public string SaveToJson()
+			=> Newtonsoft.Json.JsonConvert.SerializeObject(this);
+
 		public override string ToString()
 		{
 			return Name;

@@ -9,7 +9,6 @@ using System.Linq;
 
 namespace Envelope.Database.PostgreSql
 {
-
 	public class MetadataBuilder : IMetadataBuilder
 	{
 		/* POSTGRE SQL DATA TYPES:
@@ -70,7 +69,7 @@ namespace Envelope.Database.PostgreSql
 				{
 					var dbName = reader.GetValueOrDefault<string>("DatabaseName");
 
-					if (string.Equals(databaseName, dbName, StringComparison.InvariantCultureIgnoreCase))
+					if (!string.Equals(databaseName, dbName, StringComparison.InvariantCultureIgnoreCase))
 						continue;
 
 					return new Model
