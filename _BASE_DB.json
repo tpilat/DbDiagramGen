@@ -1,0 +1,2377 @@
+{
+  "ProviderType": 1,
+  "Name": "testName",
+  "Id": 4536599,
+  "CollationName": "Slovak_Slovakia.1250",
+  "DefaultSchema": "public",
+  "CreationDate": "2023-04-25T12:11:28Z",
+  "Schemas": [
+    {
+      "Name": "Audit",
+      "Alias": "aud",
+      "Id": 4536553,
+      "Tables": [
+        {
+          "Name": "ApplicationEntry",
+          "Id": 4538672,
+          "Columns": [
+            {
+              "Name": "IdApplicationEntry",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "IdApplicationEntryToken",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "AuditOperation",
+              "DatabaseType": "integer",
+              "IsNotNull": true,
+              "Precision": 32
+            },
+            {
+              "Name": "RuntimeUniqueKey",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "CreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "CorrelationId",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "ExternalCorrelationId",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 127
+            },
+            {
+              "Name": "MainEntityIdentifier",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 511
+            },
+            {
+              "Name": "Uri",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 1023
+            },
+            {
+              "Name": "IdUser",
+              "DatabaseType": "uuid"
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_ApplicationEntry",
+            "Columns": [
+              "IdApplicationEntry"
+            ]
+          },
+          "Indexes": [
+            {
+              "Name": "IX_ApplicationEntry_CorrelationId",
+              "Columns": [
+                "CorrelationId"
+              ]
+            },
+            {
+              "Name": "IX_ApplicationEntry_Token",
+              "Columns": [
+                "IdApplicationEntryToken"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "ApplicationEntryToken",
+          "Id": 4538662,
+          "Columns": [
+            {
+              "Name": "IdApplicationEntryToken",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Token",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "Version",
+              "DatabaseType": "integer",
+              "IsNotNull": true,
+              "Precision": 32
+            },
+            {
+              "Name": "MethodInfo",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 511
+            },
+            {
+              "Name": "MainEntityName",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "Description",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 511
+            },
+            {
+              "Name": "TokenHistory",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "SourceFilePath",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 511
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_ApplicationEntryToken",
+            "Columns": [
+              "IdApplicationEntryToken"
+            ]
+          },
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_ApplicationEntryToken_Token_Version_SourceFilePath",
+              "Columns": [
+                "Token",
+                "Version",
+                "SourceFilePath"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "AuditEntry",
+          "Id": 4536571,
+          "Columns": [
+            {
+              "Name": "IdAuditEntry",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "CreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "IdAuditType",
+              "DatabaseType": "integer",
+              "IsNotNull": true,
+              "Precision": 32
+            },
+            {
+              "Name": "TableName",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "IdUser",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "PrimaryKey",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "OldValues",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "NewValues",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "AffectedColumns",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "AuditCorrelationId",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "CommandQueryName",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 1023
+            },
+            {
+              "Name": "IdCommandQuery",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "CorrelationId",
+              "DatabaseType": "uuid"
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_AuditEntry",
+            "Columns": [
+              "IdAuditEntry"
+            ]
+          },
+          "Indexes": [
+            {
+              "Name": "IX_AuditEntry_CorrelationId",
+              "Columns": [
+                "CorrelationId"
+              ]
+            },
+            {
+              "Name": "IX_AuditEntry_CreatedUtc",
+              "Columns": [
+                "CreatedUtc"
+              ]
+            },
+            {
+              "Name": "IX_AuditEntry_IdAuditType",
+              "Columns": [
+                "IdAuditType"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "AuditType",
+          "Id": 4538648,
+          "Columns": [
+            {
+              "Name": "IdAuditType",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Code",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 15
+            },
+            {
+              "Name": "Name",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 15
+            },
+            {
+              "Name": "ItemCode",
+              "DatabaseType": "integer",
+              "IsNotNull": true,
+              "Precision": 32
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_AuditType",
+            "Columns": [
+              "IdAuditType"
+            ]
+          },
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_AuditType_ItemCode",
+              "Columns": [
+                "ItemCode"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "CommandQueryEntry",
+          "Id": 4536585,
+          "Columns": [
+            {
+              "Name": "IdCommandQueryEntry",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "CreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "CommandQueryName",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 511
+            },
+            {
+              "Name": "TraceFrame",
+              "DatabaseType": "text",
+              "IsNotNull": true
+            },
+            {
+              "Name": "IsQuery",
+              "DatabaseType": "boolean",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Data",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "IdUser",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "CorrelationId",
+              "DatabaseType": "uuid"
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_CommandQueryEntry",
+            "Columns": [
+              "IdCommandQueryEntry"
+            ]
+          },
+          "Indexes": [
+            {
+              "Name": "IX_CommandQueryEntry_CorrelationId",
+              "Columns": [
+                "CorrelationId"
+              ]
+            },
+            {
+              "Name": "IX_CommandQueryEntry_CreatedUtc",
+              "Columns": [
+                "CreatedUtc"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "CommandQueryExit",
+          "Id": 4536591,
+          "Columns": [
+            {
+              "Name": "IdCommandQueryExit",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "ElapsedMilliseconds",
+              "DatabaseType": "numeric",
+              "IsNotNull": true
+            },
+            {
+              "Name": "IsError",
+              "DatabaseType": "boolean",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Data",
+              "DatabaseType": "text"
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_CommandQueryExit",
+            "Columns": [
+              "IdCommandQueryExit"
+            ]
+          }
+        },
+        {
+          "Name": "EnvironmentInfo",
+          "Id": 4536621,
+          "Columns": [
+            {
+              "Name": "IdEnvironmentInfo",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "CreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "RuntimeUniqueKey",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "RunningEnvironment",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "ProcessName",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "ProcessId",
+              "DatabaseType": "integer",
+              "Precision": 32
+            },
+            {
+              "Name": "FrameworkDescription",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "TargetFramework",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "CLRVersion",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "EntryAssemblyName",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "EntryAssemblyVersion",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "BaseDirectory",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "MachineName",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "CurrentAppDomainName",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "Is64BitOperatingSystem",
+              "DatabaseType": "boolean"
+            },
+            {
+              "Name": "Is64BitProcess",
+              "DatabaseType": "boolean"
+            },
+            {
+              "Name": "OperatingSystemArchitecture",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "OperatingSystemPlatform",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "OperatingSystemVersion",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "ProcessArchitecture",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "CommandLine",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 1023
+            },
+            {
+              "Name": "ApplicationName",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 127
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_EnvironmentInfo",
+            "Columns": [
+              "IdEnvironmentInfo"
+            ]
+          },
+          "Indexes": [
+            {
+              "Name": "IX_EnvironmentInfo_RuntimeUniqueKey",
+              "Columns": [
+                "RuntimeUniqueKey"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "EventCounter",
+          "Id": 4536628,
+          "Columns": [
+            {
+              "Name": "IdEventCounter",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "IdEventCounterCategory",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Code",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 127
+            },
+            {
+              "Name": "Name",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 127
+            },
+            {
+              "Name": "DisplayName",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 127
+            },
+            {
+              "Name": "CounterType",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 63
+            },
+            {
+              "Name": "DisplayRateTimeScale",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 31
+            },
+            {
+              "Name": "Metadata",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "DisplayUnits",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 31
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_EventCounter",
+            "Columns": [
+              "IdEventCounter"
+            ]
+          },
+          "ForeignKeys": [
+            {
+              "Name": "FK_EventCounter_IdEventCounterCategory",
+              "Column": "IdEventCounterCategory",
+              "ForeignSchemaAlias": "aud",
+              "ForeignTableName": "EventCounterCategory",
+              "ForeignColumnName": "IdEventCounterCategory",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            }
+          ],
+          "Indexes": [
+            {
+              "Name": "IXFK_EventCounter_EventCounterCategory",
+              "Columns": [
+                "IdEventCounterCategory"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "EventCounterCategory",
+          "Id": 4536635,
+          "Columns": [
+            {
+              "Name": "IdEventCounterCategory",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "Source",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 127
+            },
+            {
+              "Name": "DisplayName",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 127
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_EventCounterCategory",
+            "Columns": [
+              "IdEventCounterCategory"
+            ]
+          }
+        },
+        {
+          "Name": "EventCounterData",
+          "Id": 4536639,
+          "Columns": [
+            {
+              "Name": "IdEventCounterData",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "IdEventCounter",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "CreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "RuntimeUniqueKey",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Increment",
+              "DatabaseType": "double precision",
+              "Precision": 53
+            },
+            {
+              "Name": "Mean",
+              "DatabaseType": "double precision",
+              "Precision": 53
+            },
+            {
+              "Name": "Count",
+              "DatabaseType": "integer",
+              "Precision": 32
+            },
+            {
+              "Name": "Min",
+              "DatabaseType": "double precision",
+              "Precision": 53
+            },
+            {
+              "Name": "Max",
+              "DatabaseType": "double precision",
+              "Precision": 53
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_EventCounterData",
+            "Columns": [
+              "IdEventCounterData"
+            ]
+          },
+          "ForeignKeys": [
+            {
+              "Name": "FK_EventCounterData_IdEventCounter",
+              "Column": "IdEventCounter",
+              "ForeignSchemaAlias": "aud",
+              "ForeignTableName": "EventCounter",
+              "ForeignColumnName": "IdEventCounter",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            }
+          ],
+          "Indexes": [
+            {
+              "Name": "IXFK_EventCounterData_EventCounter",
+              "Columns": [
+                "IdEventCounter"
+              ]
+            },
+            {
+              "Name": "IX_EventCounterData_CreatedUtc",
+              "Columns": [
+                "CreatedUtc"
+              ]
+            },
+            {
+              "Name": "IX_EventCounterData_IdEventCounter",
+              "Columns": [
+                "IdEventCounter"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Log",
+          "Id": 4536730,
+          "Columns": [
+            {
+              "Name": "IdLog",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "IdLogLevel",
+              "DatabaseType": "integer",
+              "IsNotNull": true,
+              "Precision": 32
+            },
+            {
+              "Name": "CreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "InternalMessage",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "Detail",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "StackTrace",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "MethodCallId",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "SourceContext",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "CorrelationId",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "RuntimeUniqueKey",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "IsDbLog",
+              "DatabaseType": "boolean"
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_Log",
+            "Columns": [
+              "IdLog"
+            ]
+          },
+          "Indexes": [
+            {
+              "Name": "IX_Log_CorrelationId",
+              "Columns": [
+                "CorrelationId"
+              ]
+            },
+            {
+              "Name": "IX_Log_CreatedUtc",
+              "Columns": [
+                "CreatedUtc"
+              ]
+            },
+            {
+              "Name": "IX_Log_IdLogLevel",
+              "Columns": [
+                "IdLogLevel"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "LogLevel",
+          "Id": 4538655,
+          "Columns": [
+            {
+              "Name": "IdLogLevel",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Code",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 31
+            },
+            {
+              "Name": "Name",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 31
+            },
+            {
+              "Name": "ItemCode",
+              "DatabaseType": "integer",
+              "IsNotNull": true,
+              "Precision": 32
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_LogLevel",
+            "Columns": [
+              "IdLogLevel"
+            ]
+          },
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_LogLevel_ItemCode",
+              "Columns": [
+                "ItemCode"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "LogMessage",
+          "Id": 4536740,
+          "Columns": [
+            {
+              "Name": "IdLogMessage",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "IdLogLevel",
+              "DatabaseType": "integer",
+              "IsNotNull": true,
+              "Precision": 32
+            },
+            {
+              "Name": "CreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "RuntimeUniqueKey",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "CorrelationId",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "SourceSystemName",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 1023
+            },
+            {
+              "Name": "InternalMessage",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "ClientMessage",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "Detail",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "StackTrace",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "TraceFrame",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "LogCode",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 31
+            },
+            {
+              "Name": "MethodCallId",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "SourceContext",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "IdUser",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "CommandQueryName",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 1023
+            },
+            {
+              "Name": "IdCommandQuery",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "MethodCallElapsedMilliseconds",
+              "DatabaseType": "numeric"
+            },
+            {
+              "Name": "IsValidationError",
+              "DatabaseType": "boolean",
+              "IsNotNull": true
+            },
+            {
+              "Name": "PropertyName",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "DisplayPropertyName",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "ValidationFailure",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "ContextProperties",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "Tags",
+              "DatabaseType": "text"
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_LogMessage",
+            "Columns": [
+              "IdLogMessage"
+            ]
+          },
+          "Indexes": [
+            {
+              "Name": "IX_LogMessage_CorrelationId",
+              "Columns": [
+                "CorrelationId"
+              ]
+            },
+            {
+              "Name": "IX_LogMessage_CreatedUtc",
+              "Columns": [
+                "CreatedUtc"
+              ]
+            },
+            {
+              "Name": "IX_LogMessage_IdLogLevel",
+              "Columns": [
+                "IdLogLevel"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Request",
+          "Id": 4536892,
+          "Columns": [
+            {
+              "Name": "IdRequest",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "RuntimeUniqueKey",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "CreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "CorrelationId",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "ExternalCorrelationId",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 127
+            },
+            {
+              "Name": "Protocol",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 15
+            },
+            {
+              "Name": "Scheme",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 15
+            },
+            {
+              "Name": "Host",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 127
+            },
+            {
+              "Name": "RemoteIp",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 63
+            },
+            {
+              "Name": "Method",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 15
+            },
+            {
+              "Name": "Path",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 1023
+            },
+            {
+              "Name": "QueryString",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 1023
+            },
+            {
+              "Name": "Headers",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "Body",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "BodyByteArray",
+              "DatabaseType": "bytea"
+            },
+            {
+              "Name": "Form",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "Files",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "ContentType",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_Request",
+            "Columns": [
+              "IdRequest"
+            ]
+          },
+          "Indexes": [
+            {
+              "Name": "IX_Request_CorrelationId",
+              "Columns": [
+                "CorrelationId"
+              ]
+            },
+            {
+              "Name": "IX_Request_CreatedUtc",
+              "Columns": [
+                "CreatedUtc"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "RequestAuthentication",
+          "Id": 4536899,
+          "Columns": [
+            {
+              "Name": "IdRequestAuthentication",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "RuntimeUniqueKey",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "CreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "CorrelationId",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "ExternalCorrelationId",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 127
+            },
+            {
+              "Name": "IdUser",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "Roles",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "Permissions",
+              "DatabaseType": "text"
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_RequestAuthentication",
+            "Columns": [
+              "IdRequestAuthentication"
+            ]
+          },
+          "Indexes": [
+            {
+              "Name": "IX_RequestAuthentication_CorrelationId",
+              "Columns": [
+                "CorrelationId"
+              ]
+            },
+            {
+              "Name": "IX_RequestAuthentication_CreatedUtc",
+              "Columns": [
+                "CreatedUtc"
+              ]
+            },
+            {
+              "Name": "IX_RequestAuthentication_IdUser",
+              "Columns": [
+                "IdUser"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Response",
+          "Id": 4536906,
+          "Columns": [
+            {
+              "Name": "IdResponse",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "RuntimeUniqueKey",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "CreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "CorrelationId",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "ExternalCorrelationId",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 127
+            },
+            {
+              "Name": "StatusCode",
+              "DatabaseType": "integer",
+              "Precision": 32
+            },
+            {
+              "Name": "Headers",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "Body",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "BodyByteArray",
+              "DatabaseType": "bytea"
+            },
+            {
+              "Name": "Error",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "ElapsedMilliseconds",
+              "DatabaseType": "numeric"
+            },
+            {
+              "Name": "ContentType",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_Response",
+            "Columns": [
+              "IdResponse"
+            ]
+          },
+          "Indexes": [
+            {
+              "Name": "IX_Response_CorrelationId",
+              "Columns": [
+                "CorrelationId"
+              ]
+            },
+            {
+              "Name": "IX_Response_CreatedUtc",
+              "Columns": [
+                "CreatedUtc"
+              ]
+            }
+          ]
+        }
+      ],
+      "Views": [
+        {
+          "Name": "VwApplicationEntry",
+          "Id": 4538811,
+          "Definition": " SELECT ae.\u0022IdApplicationEntry\u0022,\n    aet.\u0022IdApplicationEntryToken\u0022,\n    aet.\u0022Token\u0022,\n    aet.\u0022Version\u0022,\n    aet.\u0022SourceFilePath\u0022,\n    ae.\u0022AuditOperation\u0022,\n    ae.\u0022Uri\u0022,\n    aet.\u0022MethodInfo\u0022,\n    aet.\u0022MainEntityName\u0022,\n    ae.\u0022MainEntityIdentifier\u0022,\n    aet.\u0022Description\u0022,\n    ae.\u0022RuntimeUniqueKey\u0022,\n    ae.\u0022CreatedUtc\u0022,\n    ae.\u0022CorrelationId\u0022,\n    ae.\u0022ExternalCorrelationId\u0022,\n    ae.\u0022IdUser\u0022,\n    u.\u0022Login\u0022,\n    ei.\u0022ApplicationName\u0022\n   FROM (((aud.\u0022ApplicationEntry\u0022 ae\n     JOIN aud.\u0022ApplicationEntryToken\u0022 aet ON ((ae.\u0022IdApplicationEntryToken\u0022 = aet.\u0022IdApplicationEntryToken\u0022)))\n     LEFT JOIN usr.\u0022User\u0022 u ON ((ae.\u0022IdUser\u0022 = u.\u0022IdUser\u0022)))\n     LEFT JOIN aud.\u0022EnvironmentInfo\u0022 ei ON ((ae.\u0022RuntimeUniqueKey\u0022 = ei.\u0022RuntimeUniqueKey\u0022)));"
+        },
+        {
+          "Name": "VwAuditEntry",
+          "Id": 4538681,
+          "Definition": " SELECT ae.\u0022IdAuditEntry\u0022,\n    ae.\u0022CreatedUtc\u0022,\n    ae.\u0022IdAuditType\u0022,\n    atp.\u0022Name\u0022 AS \u0022AuditType\u0022,\n    ae.\u0022TableName\u0022,\n    ae.\u0022IdUser\u0022,\n    u.\u0022Login\u0022,\n    ae.\u0022PrimaryKey\u0022,\n    ae.\u0022OldValues\u0022,\n    ae.\u0022NewValues\u0022,\n    ae.\u0022AffectedColumns\u0022,\n    ae.\u0022AuditCorrelationId\u0022,\n    ae.\u0022CommandQueryName\u0022,\n    ae.\u0022IdCommandQuery\u0022,\n    ae.\u0022CorrelationId\u0022\n   FROM ((aud.\u0022AuditEntry\u0022 ae\n     JOIN aud.\u0022AuditType\u0022 atp ON ((ae.\u0022IdAuditType\u0022 = atp.\u0022ItemCode\u0022)))\n     LEFT JOIN usr.\u0022User\u0022 u ON ((ae.\u0022IdUser\u0022 = u.\u0022IdUser\u0022)));"
+        },
+        {
+          "Name": "VwCommandQueryEntry",
+          "Id": 4538214,
+          "Definition": " SELECT ent.\u0022IdCommandQueryEntry\u0022,\n    ent.\u0022CreatedUtc\u0022,\n    ent.\u0022CommandQueryName\u0022,\n    ent.\u0022TraceFrame\u0022,\n    ent.\u0022IsQuery\u0022,\n    ent.\u0022IdUser\u0022,\n    ent.\u0022CorrelationId\u0022,\n    ex.\u0022ElapsedMilliseconds\u0022,\n    ex.\u0022IsError\u0022,\n    ex.\u0022Data\u0022 AS \u0022ResponseData\u0022\n   FROM (aud.\u0022CommandQueryEntry\u0022 ent\n     LEFT JOIN aud.\u0022CommandQueryExit\u0022 ex ON ((ent.\u0022IdCommandQueryEntry\u0022 = ex.\u0022IdCommandQueryExit\u0022)));"
+        },
+        {
+          "Name": "VwLog",
+          "Id": 4538686,
+          "Definition": " SELECT l.\u0022IdLog\u0022,\n    l.\u0022IdLogLevel\u0022,\n    ll.\u0022Name\u0022 AS \u0022LogLevel\u0022,\n    l.\u0022CreatedUtc\u0022,\n    l.\u0022InternalMessage\u0022,\n    l.\u0022Detail\u0022,\n    l.\u0022StackTrace\u0022,\n    l.\u0022MethodCallId\u0022,\n    l.\u0022SourceContext\u0022,\n    l.\u0022CorrelationId\u0022,\n    l.\u0022RuntimeUniqueKey\u0022,\n    l.\u0022IsDbLog\u0022,\n    ei.\u0022ApplicationName\u0022\n   FROM ((aud.\u0022Log\u0022 l\n     JOIN aud.\u0022LogLevel\u0022 ll ON ((l.\u0022IdLogLevel\u0022 = ll.\u0022ItemCode\u0022)))\n     LEFT JOIN aud.\u0022EnvironmentInfo\u0022 ei ON ((l.\u0022RuntimeUniqueKey\u0022 = ei.\u0022RuntimeUniqueKey\u0022)));"
+        },
+        {
+          "Name": "VwLogMessage",
+          "Id": 4538690,
+          "Definition": " SELECT lm.\u0022IdLogMessage\u0022,\n    lm.\u0022IdLogLevel\u0022,\n    ll.\u0022Name\u0022 AS \u0022LogLevel\u0022,\n    lm.\u0022CreatedUtc\u0022,\n    lm.\u0022RuntimeUniqueKey\u0022,\n    lm.\u0022CorrelationId\u0022,\n    lm.\u0022SourceSystemName\u0022,\n    \u0022substring\u0022(lm.\u0022InternalMessage\u0022, 1, 100) AS \u0022InternalMessage\u0022,\n    \u0022substring\u0022(lm.\u0022ClientMessage\u0022, 1, 100) AS \u0022ClientMessage\u0022,\n    \u0022substring\u0022(lm.\u0022Detail\u0022, 1, 100) AS \u0022Detail\u0022,\n    \u0022substring\u0022(lm.\u0022StackTrace\u0022, 1, 100) AS \u0022StackTrace\u0022,\n    \u0022substring\u0022(lm.\u0022TraceFrame\u0022, 1, 100) AS \u0022TraceFrame\u0022,\n    lm.\u0022LogCode\u0022,\n    lm.\u0022MethodCallId\u0022,\n    lm.\u0022SourceContext\u0022,\n    lm.\u0022IdUser\u0022,\n    u.\u0022Login\u0022,\n    lm.\u0022CommandQueryName\u0022,\n    lm.\u0022IdCommandQuery\u0022,\n    lm.\u0022MethodCallElapsedMilliseconds\u0022,\n    lm.\u0022IsValidationError\u0022,\n    lm.\u0022PropertyName\u0022,\n    lm.\u0022DisplayPropertyName\u0022,\n    \u0022substring\u0022(lm.\u0022ValidationFailure\u0022, 1, 100) AS \u0022ValidationFailure\u0022,\n    \u0022substring\u0022(lm.\u0022ContextProperties\u0022, 1, 100) AS \u0022ContextProperties\u0022,\n    lm.\u0022Tags\u0022,\n    ei.\u0022ApplicationName\u0022\n   FROM (((aud.\u0022LogMessage\u0022 lm\n     JOIN aud.\u0022LogLevel\u0022 ll ON ((lm.\u0022IdLogLevel\u0022 = ll.\u0022ItemCode\u0022)))\n     LEFT JOIN usr.\u0022User\u0022 u ON ((lm.\u0022IdUser\u0022 = u.\u0022IdUser\u0022)))\n     LEFT JOIN aud.\u0022EnvironmentInfo\u0022 ei ON ((lm.\u0022RuntimeUniqueKey\u0022 = ei.\u0022RuntimeUniqueKey\u0022)));"
+        },
+        {
+          "Name": "VwRequestsAndResponses",
+          "Id": 4538893,
+          "Definition": " SELECT req.\u0022IdRequest\u0022,\n    res.\u0022IdResponse\u0022,\n    req.\u0022RuntimeUniqueKey\u0022,\n    req.\u0022CreatedUtc\u0022 AS \u0022Request_CreatedUtc\u0022,\n    res.\u0022CreatedUtc\u0022 AS \u0022Response_CreatedUtc\u0022,\n    req.\u0022CorrelationId\u0022,\n    req.\u0022ExternalCorrelationId\u0022 AS \u0022Request_ExternalCorrelationId\u0022,\n    res.\u0022ExternalCorrelationId\u0022 AS \u0022Response_ExternalCorrelationId\u0022,\n    res.\u0022StatusCode\u0022,\n    req.\u0022Method\u0022,\n    req.\u0022Path\u0022,\n    req.\u0022QueryString\u0022,\n    req.\u0022Protocol\u0022,\n    req.\u0022Scheme\u0022,\n    req.\u0022Host\u0022,\n    req.\u0022RemoteIp\u0022,\n    \u0022substring\u0022(req.\u0022Headers\u0022, 1, 100) AS \u0022Request_Headers\u0022,\n    \u0022substring\u0022(res.\u0022Headers\u0022, 1, 100) AS \u0022Response_Headers\u0022,\n    req.\u0022ContentType\u0022 AS \u0022Request_ContentType\u0022,\n    res.\u0022ContentType\u0022 AS \u0022Response_ContentType\u0022,\n    res.\u0022ElapsedMilliseconds\u0022 AS \u0022Response_ElapsedMilliseconds\u0022,\n    \u0022substring\u0022(req.\u0022Form\u0022, 1, 100) AS \u0022Form\u0022,\n    \u0022substring\u0022(req.\u0022Body\u0022, 1, 100) AS \u0022Request_Body\u0022,\n    \u0022substring\u0022(res.\u0022Body\u0022, 1, 100) AS \u0022Response_Body\u0022,\n    \u0022substring\u0022(res.\u0022Error\u0022, 1, 100) AS \u0022Response_Error\u0022,\n    ei.\u0022ApplicationName\u0022\n   FROM ((aud.\u0022Request\u0022 req\n     LEFT JOIN aud.\u0022Response\u0022 res ON (((req.\u0022CorrelationId\u0022 = res.\u0022CorrelationId\u0022) AND (req.\u0022RuntimeUniqueKey\u0022 = res.\u0022RuntimeUniqueKey\u0022))))\n     LEFT JOIN aud.\u0022EnvironmentInfo\u0022 ei ON ((req.\u0022RuntimeUniqueKey\u0022 = ei.\u0022RuntimeUniqueKey\u0022)));"
+        }
+      ]
+    },
+    {
+      "Name": "UserManagement",
+      "Alias": "usr",
+      "Id": 4536565,
+      "Tables": [
+        {
+          "Name": "LoginProvider",
+          "Id": 4536737,
+          "Columns": [
+            {
+              "Name": "IdLoginProvider",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Code",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 63
+            },
+            {
+              "Name": "Name",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 63
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_LoginProvider",
+            "Columns": [
+              "IdLoginProvider"
+            ]
+          },
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_LoginProvider_Code",
+              "Columns": [
+                "Code"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "NextFactorAuthentication",
+          "Id": 4536754,
+          "Columns": [
+            {
+              "Name": "IdNextFactorAuthentication",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Code",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 63
+            },
+            {
+              "Name": "Name",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 63
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_NextFactorAuthentication",
+            "Columns": [
+              "IdNextFactorAuthentication"
+            ]
+          },
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_NextFactorAuthentication_Code",
+              "Columns": [
+                "Code"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Permission",
+          "Id": 4536847,
+          "Columns": [
+            {
+              "Name": "IdPermission",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Code",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 127
+            },
+            {
+              "Name": "Name",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 127
+            },
+            {
+              "Name": "Description",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 511
+            },
+            {
+              "Name": "IsSystemPermission",
+              "DatabaseType": "boolean",
+              "IsNotNull": true
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_Permission",
+            "Columns": [
+              "IdPermission"
+            ]
+          },
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_Permission_Code",
+              "Columns": [
+                "Code"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Role",
+          "Id": 4536913,
+          "Columns": [
+            {
+              "Name": "IdRole",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "Name",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 63
+            },
+            {
+              "Name": "Description",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 511
+            },
+            {
+              "Name": "HasFixedPermissions",
+              "DatabaseType": "boolean",
+              "IsNotNull": true
+            },
+            {
+              "Name": "HasFixedUsers",
+              "DatabaseType": "boolean",
+              "IsNotNull": true
+            },
+            {
+              "Name": "IsSystemRole",
+              "DatabaseType": "boolean",
+              "IsNotNull": true
+            },
+            {
+              "Name": "DeletedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "AuditCreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "AuditModifiedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "IdAuditCreatedBy",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "IdAuditModifiedBy",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "ConcurrencyToken",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_Role",
+            "Columns": [
+              "IdRole"
+            ]
+          },
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_Role_Name",
+              "Columns": [
+                "Name"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "RolePermission",
+          "Id": 4536920,
+          "Columns": [
+            {
+              "Name": "IdRolePermission",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "IdRole",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "IdPermission",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "DeletedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "AuditCreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "AuditModifiedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "IdAuditCreatedBy",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "IdAuditModifiedBy",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "ConcurrencyToken",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_RolePermission",
+            "Columns": [
+              "IdRolePermission"
+            ]
+          },
+          "ForeignKeys": [
+            {
+              "Name": "FK_RolePermission_IdPermission",
+              "Column": "IdPermission",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "Permission",
+              "ForeignColumnName": "IdPermission",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            },
+            {
+              "Name": "FK_RolePermission_IdRole",
+              "Column": "IdRole",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "Role",
+              "ForeignColumnName": "IdRole",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            }
+          ],
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_RolePermission_IdRole_IdPermission",
+              "Columns": [
+                "IdRole",
+                "IdPermission"
+              ]
+            }
+          ],
+          "Indexes": [
+            {
+              "Name": "IXFK_RolePermission_Permission",
+              "Columns": [
+                "IdPermission"
+              ]
+            },
+            {
+              "Name": "IXFK_RolePermission_Role",
+              "Columns": [
+                "IdRole"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "Tenant",
+          "Id": 4537021,
+          "Columns": [
+            {
+              "Name": "IdTenant",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Name",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "IdParent",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "DeletedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_Tenant",
+            "Columns": [
+              "IdTenant"
+            ]
+          },
+          "ForeignKeys": [
+            {
+              "Name": "FK_Tenant_IdParent",
+              "Column": "IdParent",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "Tenant",
+              "ForeignColumnName": "IdTenant",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            }
+          ],
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_Tenant_Name",
+              "Columns": [
+                "Name"
+              ]
+            }
+          ],
+          "Indexes": [
+            {
+              "Name": "IXFK_Tenant_Tenant",
+              "Columns": [
+                "IdParent"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "User",
+          "Id": 4537032,
+          "Columns": [
+            {
+              "Name": "IdUser",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "Login",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "Email",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "EmailConfirmed",
+              "DatabaseType": "boolean",
+              "IsNotNull": true
+            },
+            {
+              "Name": "PasswordHash",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "SecurityStamp",
+              "DatabaseType": "text"
+            },
+            {
+              "Name": "LockoutEndUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "LockoutEnabled",
+              "DatabaseType": "boolean",
+              "IsNotNull": true
+            },
+            {
+              "Name": "AccessFailedCount",
+              "DatabaseType": "integer",
+              "IsNotNull": true,
+              "Precision": 32
+            },
+            {
+              "Name": "IsSystemUser",
+              "DatabaseType": "boolean",
+              "IsNotNull": true
+            },
+            {
+              "Name": "DeletedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "ConfirmationUrlSlug",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 255
+            },
+            {
+              "Name": "ConfirmationUrlValidToUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "AuditCreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "AuditModifiedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "IdAuditCreatedBy",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "IdAuditModifiedBy",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "ConcurrencyToken",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "ADDistinguishedName",
+              "DatabaseType": "character varying",
+              "CharacterMaximumLength": 1023
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_User",
+            "Columns": [
+              "IdUser"
+            ]
+          },
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_User_Login",
+              "Columns": [
+                "Login"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "UserLogin",
+          "Id": 4537039,
+          "Columns": [
+            {
+              "Name": "IdUserLogin",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "IdUser",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "IdLoginProvider",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "ExternalUserIdentifier",
+              "DatabaseType": "character varying",
+              "IsNotNull": true,
+              "CharacterMaximumLength": 127
+            },
+            {
+              "Name": "CreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "DeletedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_UserLogin",
+            "Columns": [
+              "IdUserLogin"
+            ]
+          },
+          "ForeignKeys": [
+            {
+              "Name": "FK_UserLogin_IdLoginProvider",
+              "Column": "IdLoginProvider",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "LoginProvider",
+              "ForeignColumnName": "IdLoginProvider",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            },
+            {
+              "Name": "FK_UserLogin_IdUser",
+              "Column": "IdUser",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "User",
+              "ForeignColumnName": "IdUser",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            }
+          ],
+          "Indexes": [
+            {
+              "Name": "IXFK_UserLogin_LoginProvider",
+              "Columns": [
+                "IdLoginProvider"
+              ]
+            },
+            {
+              "Name": "IXFK_UserLogin_User",
+              "Columns": [
+                "IdUser"
+              ]
+            },
+            {
+              "Name": "IX_UserLogin_CreatedUtc",
+              "Columns": [
+                "CreatedUtc"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "UserNextFactorAuthentication",
+          "Id": 4537043,
+          "Columns": [
+            {
+              "Name": "IdUserNextFactorAuthentication",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "IdUser",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "IdNextFactorAuthentication",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Disabled",
+              "DatabaseType": "boolean",
+              "IsNotNull": true
+            },
+            {
+              "Name": "DeletedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "AuditCreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "AuditModifiedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "IdAuditCreatedBy",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "IdAuditModifiedBy",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "ConcurrencyToken",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "NextFactorAuthentication",
+              "DatabaseType": "uuid"
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_UserNextFactorAuthentication",
+            "Columns": [
+              "IdUserNextFactorAuthentication"
+            ]
+          },
+          "ForeignKeys": [
+            {
+              "Name": "FK_UserNextFactorAuthentication_IdNextFactorAuthentication",
+              "Column": "NextFactorAuthentication",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "NextFactorAuthentication",
+              "ForeignColumnName": "IdNextFactorAuthentication",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            },
+            {
+              "Name": "FK_UserNextFactorAuthentication_IdUser",
+              "Column": "IdUser",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "User",
+              "ForeignColumnName": "IdUser",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            }
+          ],
+          "Indexes": [
+            {
+              "Name": "IXFK_UserNextFactorAuthentication_NextFactorAuthentication",
+              "Columns": [
+                "NextFactorAuthentication"
+              ]
+            },
+            {
+              "Name": "IXFK_UserNextFactorAuthentication_User",
+              "Columns": [
+                "IdUser"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "UserPermission",
+          "Id": 4537047,
+          "Columns": [
+            {
+              "Name": "IdUserPermission",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "IdUser",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "IdUserTenant",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "IdPermission",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "DeletedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "AuditCreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "AuditModifiedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "IdAuditCreatedBy",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "IdAuditModifiedBy",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "ConcurrencyToken",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_UserPermission",
+            "Columns": [
+              "IdUserPermission"
+            ]
+          },
+          "ForeignKeys": [
+            {
+              "Name": "FK_UserPermission_IdPermission",
+              "Column": "IdPermission",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "Permission",
+              "ForeignColumnName": "IdPermission",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            },
+            {
+              "Name": "FK_UserPermission_IdUser",
+              "Column": "IdUser",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "User",
+              "ForeignColumnName": "IdUser",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            },
+            {
+              "Name": "FK_UserPermission_IdUserTenant",
+              "Column": "IdUserTenant",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "UserTenant",
+              "ForeignColumnName": "IdUserTenant",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            }
+          ],
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_UserPermission_IdUser_IdTenent_IdPerm",
+              "Columns": [
+                "IdUser",
+                "IdUserTenant",
+                "IdPermission"
+              ]
+            }
+          ],
+          "Indexes": [
+            {
+              "Name": "IXFK_UserPermission_Permission",
+              "Columns": [
+                "IdPermission"
+              ]
+            },
+            {
+              "Name": "IXFK_UserPermission_User",
+              "Columns": [
+                "IdUser"
+              ]
+            },
+            {
+              "Name": "IXFK_UserPermission_UserTenant",
+              "Columns": [
+                "IdUserTenant"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "UserRole",
+          "Id": 4537051,
+          "Columns": [
+            {
+              "Name": "IdUserRole",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "IdUser",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "IdUserTenant",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "IdRole",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "DeletedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "AuditCreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "AuditModifiedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            },
+            {
+              "Name": "IdAuditCreatedBy",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "IdAuditModifiedBy",
+              "DatabaseType": "uuid"
+            },
+            {
+              "Name": "ConcurrencyToken",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_UserRole",
+            "Columns": [
+              "IdUserRole"
+            ]
+          },
+          "ForeignKeys": [
+            {
+              "Name": "FK_UserRole_IdRole",
+              "Column": "IdRole",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "Role",
+              "ForeignColumnName": "IdRole",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            },
+            {
+              "Name": "FK_UserRole_IdUser",
+              "Column": "IdUser",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "User",
+              "ForeignColumnName": "IdUser",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            },
+            {
+              "Name": "FK_UserRole_IdUserTenant",
+              "Column": "IdUserTenant",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "UserTenant",
+              "ForeignColumnName": "IdUserTenant",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            }
+          ],
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_UserRole_IdUser_IdTenant_IdRole",
+              "Columns": [
+                "IdUser",
+                "IdUserTenant",
+                "IdRole"
+              ]
+            }
+          ],
+          "Indexes": [
+            {
+              "Name": "IXFK_UserRole_Role",
+              "Columns": [
+                "IdRole"
+              ]
+            },
+            {
+              "Name": "IXFK_UserRole_User",
+              "Columns": [
+                "IdUser"
+              ]
+            },
+            {
+              "Name": "IXFK_UserRole_UserTenant",
+              "Columns": [
+                "IdUserTenant"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "UserTenant",
+          "Id": 4537055,
+          "Columns": [
+            {
+              "Name": "IdUserTenant",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "IdTenant",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "IdUser",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "DeletedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "Precision": 6
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_UserTenant",
+            "Columns": [
+              "IdUserTenant"
+            ]
+          },
+          "ForeignKeys": [
+            {
+              "Name": "FK_UserTenant_IdTenant",
+              "Column": "IdTenant",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "Tenant",
+              "ForeignColumnName": "IdTenant",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            },
+            {
+              "Name": "FK_UserTenant_IdUser",
+              "Column": "IdUser",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "User",
+              "ForeignColumnName": "IdUser",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            }
+          ],
+          "UniqueConstraints": [
+            {
+              "Name": "UQ_UserTenant_IdTenant_IdUser",
+              "Columns": [
+                "IdTenant",
+                "IdUser"
+              ]
+            }
+          ],
+          "Indexes": [
+            {
+              "Name": "IXFK_UserTenant_Tenant",
+              "Columns": [
+                "IdTenant"
+              ]
+            },
+            {
+              "Name": "IXFK_UserTenant_User",
+              "Columns": [
+                "IdUser"
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "UserToken",
+          "Id": 4537058,
+          "Columns": [
+            {
+              "Name": "IdUserToken",
+              "DatabaseType": "uuid",
+              "IsNotNull": true,
+              "DefaultValue": "uuid_generate_v4()"
+            },
+            {
+              "Name": "IdLoginProvider",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "IdUser",
+              "DatabaseType": "uuid",
+              "IsNotNull": true
+            },
+            {
+              "Name": "Token",
+              "DatabaseType": "text",
+              "IsNotNull": true
+            },
+            {
+              "Name": "CreatedUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            },
+            {
+              "Name": "ValidToUtc",
+              "DatabaseType": "timestamp without time zone",
+              "IsNotNull": true,
+              "Precision": 6
+            }
+          ],
+          "PrimaryKey": {
+            "Name": "PK_UserToken",
+            "Columns": [
+              "IdUserToken"
+            ]
+          },
+          "ForeignKeys": [
+            {
+              "Name": "FK_UserToken_IdLoginProvider",
+              "Column": "IdLoginProvider",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "LoginProvider",
+              "ForeignColumnName": "IdLoginProvider",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            },
+            {
+              "Name": "FK_UserToken_IdUser",
+              "Column": "IdUser",
+              "ForeignSchemaAlias": "usr",
+              "ForeignTableName": "User",
+              "ForeignColumnName": "IdUser",
+              "OnUpdateAction": 1,
+              "OnDeleteAction": 1
+            }
+          ],
+          "Indexes": [
+            {
+              "Name": "IXFK_UserToken_LoginProvider",
+              "Columns": [
+                "IdLoginProvider"
+              ]
+            },
+            {
+              "Name": "IXFK_UserToken_User",
+              "Columns": [
+                "IdUser"
+              ]
+            },
+            {
+              "Name": "IX_UserToken_Created",
+              "Columns": [
+                "CreatedUtc"
+              ]
+            }
+          ]
+        }
+      ],
+      "Views": [
+        {
+          "Name": "VwPermission",
+          "Id": 4538292,
+          "Definition": " SELECT p.\u0022IdPermission\u0022,\n    p.\u0022Code\u0022,\n    p.\u0022Name\u0022,\n    p.\u0022Description\u0022,\n    p.\u0022IsSystemPermission\u0022\n   FROM usr.\u0022Permission\u0022 p;"
+        },
+        {
+          "Name": "VwRole",
+          "Id": 4538301,
+          "Definition": " SELECT r.\u0022IdRole\u0022,\n    r.\u0022Name\u0022,\n    r.\u0022HasFixedPermissions\u0022,\n    r.\u0022HasFixedUsers\u0022,\n    r.\u0022IsSystemRole\u0022,\n    r.\u0022DeletedUtc\u0022\n   FROM usr.\u0022Role\u0022 r;"
+        },
+        {
+          "Name": "VwUser",
+          "Id": 4538361,
+          "Definition": " SELECT u.\u0022IdUser\u0022,\n    u.\u0022Login\u0022,\n    u.\u0022Email\u0022,\n    u.\u0022IsSystemUser\u0022,\n    u.\u0022LockoutEndUtc\u0022,\n    u.\u0022DeletedUtc\u0022\n   FROM usr.\u0022User\u0022 u;"
+        },
+        {
+          "Name": "VwUserPermission",
+          "Id": 4539236,
+          "Definition": " SELECT rp.\u0022IdRolePermission\u0022,\n    NULL::uuid AS \u0022IdUserPermission\u0022,\n    p.\u0022IdPermission\u0022,\n    p.\u0022IsSystemPermission\u0022,\n    r.\u0022IdRole\u0022,\n    r.\u0022Name\u0022 AS \u0022Role_Name\u0022,\n    r.\u0022HasFixedPermissions\u0022,\n    r.\u0022HasFixedUsers\u0022,\n    r.\u0022IsSystemRole\u0022,\n    ur.\u0022IdUserRole\u0022,\n    ur.\u0022IdUserTenant\u0022,\n    t.\u0022IdTenant\u0022,\n    t.\u0022Name\u0022 AS \u0022Tenant\u0022,\n    u.\u0022IdUser\u0022,\n    u.\u0022Login\u0022,\n    u.\u0022Email\u0022,\n    u.\u0022IsSystemUser\u0022,\n    u.\u0022LockoutEndUtc\u0022\n   FROM ((((((usr.\u0022RolePermission\u0022 rp\n     JOIN usr.\u0022Permission\u0022 p ON ((rp.\u0022IdPermission\u0022 = p.\u0022IdPermission\u0022)))\n     JOIN usr.\u0022Role\u0022 r ON (((rp.\u0022IdRole\u0022 = r.\u0022IdRole\u0022) AND (r.\u0022DeletedUtc\u0022 IS NULL))))\n     JOIN usr.\u0022UserRole\u0022 ur ON (((r.\u0022IdRole\u0022 = ur.\u0022IdRole\u0022) AND (ur.\u0022DeletedUtc\u0022 IS NULL))))\n     JOIN usr.\u0022User\u0022 u ON (((ur.\u0022IdUser\u0022 = u.\u0022IdUser\u0022) AND (u.\u0022DeletedUtc\u0022 IS NULL))))\n     LEFT JOIN usr.\u0022UserTenant\u0022 ut ON (((ur.\u0022IdUserTenant\u0022 = ut.\u0022IdUserTenant\u0022) AND (ut.\u0022DeletedUtc\u0022 IS NULL))))\n     LEFT JOIN usr.\u0022Tenant\u0022 t ON (((ut.\u0022IdTenant\u0022 = t.\u0022IdTenant\u0022) AND (t.\u0022DeletedUtc\u0022 IS NULL))))\n  WHERE (rp.\u0022DeletedUtc\u0022 IS NULL)\nUNION ALL\n SELECT NULL::uuid AS \u0022IdRolePermission\u0022,\n    up.\u0022IdUserPermission\u0022,\n    p.\u0022IdPermission\u0022,\n    p.\u0022IsSystemPermission\u0022,\n    NULL::uuid AS \u0022IdRole\u0022,\n    NULL::character varying AS \u0022Role_Name\u0022,\n    NULL::boolean AS \u0022HasFixedPermissions\u0022,\n    NULL::boolean AS \u0022HasFixedUsers\u0022,\n    NULL::boolean AS \u0022IsSystemRole\u0022,\n    NULL::uuid AS \u0022IdUserRole\u0022,\n    up.\u0022IdUserTenant\u0022,\n    t.\u0022IdTenant\u0022,\n    t.\u0022Name\u0022 AS \u0022Tenant\u0022,\n    u.\u0022IdUser\u0022,\n    u.\u0022Login\u0022,\n    u.\u0022Email\u0022,\n    u.\u0022IsSystemUser\u0022,\n    u.\u0022LockoutEndUtc\u0022\n   FROM ((((usr.\u0022UserPermission\u0022 up\n     JOIN usr.\u0022User\u0022 u ON (((up.\u0022IdUser\u0022 = u.\u0022IdUser\u0022) AND (u.\u0022DeletedUtc\u0022 IS NULL))))\n     JOIN usr.\u0022Permission\u0022 p ON ((up.\u0022IdPermission\u0022 = p.\u0022IdPermission\u0022)))\n     LEFT JOIN usr.\u0022UserTenant\u0022 ut ON (((up.\u0022IdUserTenant\u0022 = ut.\u0022IdUserTenant\u0022) AND (ut.\u0022DeletedUtc\u0022 IS NULL))))\n     LEFT JOIN usr.\u0022Tenant\u0022 t ON (((ut.\u0022IdTenant\u0022 = t.\u0022IdTenant\u0022) AND (t.\u0022DeletedUtc\u0022 IS NULL))))\n  WHERE (up.\u0022DeletedUtc\u0022 IS NULL);"
+        },
+        {
+          "Name": "VwUserRole",
+          "Id": 4539241,
+          "Definition": " SELECT ur.\u0022IdUserRole\u0022,\n    ur.\u0022IdUserTenant\u0022,\n    t.\u0022IdTenant\u0022,\n    t.\u0022Name\u0022 AS \u0022Tenant\u0022,\n    u.\u0022IdUser\u0022,\n    u.\u0022Login\u0022,\n    u.\u0022Email\u0022,\n    u.\u0022IsSystemUser\u0022,\n    u.\u0022LockoutEndUtc\u0022,\n    r.\u0022IdRole\u0022,\n    r.\u0022Name\u0022 AS \u0022Role_Name\u0022,\n    r.\u0022HasFixedPermissions\u0022,\n    r.\u0022HasFixedUsers\u0022,\n    r.\u0022IsSystemRole\u0022\n   FROM ((((usr.\u0022UserRole\u0022 ur\n     JOIN usr.\u0022User\u0022 u ON (((ur.\u0022IdUser\u0022 = u.\u0022IdUser\u0022) AND (u.\u0022DeletedUtc\u0022 IS NULL))))\n     JOIN usr.\u0022Role\u0022 r ON (((ur.\u0022IdRole\u0022 = r.\u0022IdRole\u0022) AND (r.\u0022DeletedUtc\u0022 IS NULL))))\n     LEFT JOIN usr.\u0022UserTenant\u0022 ut ON (((ur.\u0022IdUserTenant\u0022 = ut.\u0022IdUserTenant\u0022) AND (ut.\u0022DeletedUtc\u0022 IS NULL))))\n     LEFT JOIN usr.\u0022Tenant\u0022 t ON (((ut.\u0022IdTenant\u0022 = t.\u0022IdTenant\u0022) AND (t.\u0022DeletedUtc\u0022 IS NULL))))\n  WHERE (ur.\u0022DeletedUtc\u0022 IS NULL);"
+        }
+      ]
+    }
+  ]
+}

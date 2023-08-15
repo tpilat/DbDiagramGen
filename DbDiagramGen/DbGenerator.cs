@@ -54,7 +54,7 @@ namespace DbDiagramGen
 				CreateDiagram(schema);
 
 			foreach (var schema in _dbModel.Schemas)
-				CreateReferences(schema);
+				CreateReferences(schema, _config.FlipConnectors);
 
 			var diagrams = _tableSchemaToDiagramMap.Values.ToList();
 			diagrams.AddRange(_viewSchemaToDiagramMap.Values.ToList());
@@ -564,16 +564,20 @@ namespace DbDiagramGen
 			}
 		}
 
-		private void CreateReferences(Envelope.Database.ISchema schema)
+		private void CreateReferences(
+			Envelope.Database.ISchema schema,
+			bool flipConnectors)
 		{
 			foreach (var dbTable in schema.Tables)
-				CreateReferences(dbTable);
+				CreateReferences(dbTable, flipConnectors);
 
 			//foreach (var nestedNamespace in schema.NestedNamespaces)
 			//	CreateReferences(nestedNamespace);
 		}
 
-		private void CreateReferences(Envelope.Database.ITable dbTable)
+		private void CreateReferences(
+			Envelope.Database.ITable dbTable,
+			bool flipConnectors)
 		{
 			if (!_tableSchemaToPackageMap.TryGetValue(dbTable.Schema.Alias, out var eaPackage))
 			{
@@ -632,7 +636,8 @@ namespace DbDiagramGen
 						eaPackage,
 						sourceTableElement,
 						targetTableElement,
-						foreignKey);
+						foreignKey,
+						flipConnectors);
 
 				var labelLength = Convert.ToInt32(Math.Ceiling(Math.Max(foreignKey.ToColumn.Name.Length, foreignKey.FromColumn.Name.Length) * 5.5));
 				EA.DiagramLink diagramLink = eaDiagram.DiagramLinks.AddNew("", "");
@@ -687,7 +692,8 @@ namespace DbDiagramGen
 			EA.IDualPackage eaPackage,
 			EA.IDualElement sourceTableElement,
 			EA.IDualElement targetTableElement,
-			Envelope.Database.IForeignKey foreignKey)
+			Envelope.Database.IForeignKey foreignKey,
+			bool flipConnector)
 		{
 			EA.Connector eaConnector = eaPackage.Connectors.AddNew($"{foreignKey.FromColumn.Name} <-> [{foreignKey.ToColumn.Name}]", "Association");
 			eaConnector.Direction = "Source -> Destination";
@@ -708,8 +714,8 @@ namespace DbDiagramGen
 				: "0..*";
 			eaConnector.ClientEnd.Containment = "Unspecified";
 			eaConnector.ClientEnd.IsChangeable = "none";
-			eaConnector.ClientEnd.IsNavigable = false;
-			eaConnector.ClientEnd.Navigable = "Unspecified";
+			eaConnector.ClientEnd.IsNavigable = flipConnector ? false : true;
+			eaConnector.ClientEnd.Navigable = flipConnector ? "Unspecified" : "Navigable";
 			eaConnector.ClientEnd.Role = foreignKey.Name;
 			updated = eaConnector.ClientEnd.Update();
 			if (!updated)
@@ -725,8 +731,8 @@ namespace DbDiagramGen
 				: "0..1";
 			eaConnector.SupplierEnd.Containment = "Unspecified";
 			eaConnector.SupplierEnd.IsChangeable = "none";
-			eaConnector.SupplierEnd.IsNavigable = true;
-			eaConnector.SupplierEnd.Navigable = "Navigable";
+			eaConnector.SupplierEnd.IsNavigable = flipConnector ? true : false;
+			eaConnector.SupplierEnd.Navigable = flipConnector ? "Navigable" : "Unspecified";
 			eaConnector.SupplierEnd.Role = foreignKey.ToColumn.Table.PrimaryKey?.Name;
 			updated = eaConnector.SupplierEnd.Update();
 			if (!updated)

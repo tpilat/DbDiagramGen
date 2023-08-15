@@ -45,7 +45,8 @@ namespace DbDiagramGen.Forms
 				_repository,
 				new DbGenertorConfig
 				{
-					UseAutoRoutingLineStyle = UseAutoRoutingLineStyleCheckBox.Checked
+					UseAutoRoutingLineStyle = UseAutoRoutingLineStyleCheckBox.Checked,
+					FlipConnectors = FlipConnectorsCheckBox.Checked
 				});
 			var genErrors = generator.Generate();
 

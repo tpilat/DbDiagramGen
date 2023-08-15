@@ -37,6 +37,7 @@ namespace DbDiagramGen.Forms
 			this.MainPanel = new System.Windows.Forms.Panel();
 			this.LoadButton = new System.Windows.Forms.Button();
 			this.UseAutoRoutingLineStyleCheckBox = new System.Windows.Forms.CheckBox();
+			this.FlipConnectorsCheckBox = new System.Windows.Forms.CheckBox();
 			this.MainPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -82,6 +83,7 @@ namespace DbDiagramGen.Forms
 			// 
 			// MainPanel
 			// 
+			this.MainPanel.Controls.Add(this.FlipConnectorsCheckBox);
 			this.MainPanel.Controls.Add(this.LoadButton);
 			this.MainPanel.Controls.Add(this.UseAutoRoutingLineStyleCheckBox);
 			this.MainPanel.Controls.Add(this.ButtonBrowse);
@@ -107,12 +109,22 @@ namespace DbDiagramGen.Forms
 			// UseAutoRoutingLineStyleCheckBox
 			// 
 			this.UseAutoRoutingLineStyleCheckBox.AutoSize = true;
-			this.UseAutoRoutingLineStyleCheckBox.Location = new System.Drawing.Point(20, 91);
+			this.UseAutoRoutingLineStyleCheckBox.Location = new System.Drawing.Point(20, 79);
 			this.UseAutoRoutingLineStyleCheckBox.Name = "UseAutoRoutingLineStyleCheckBox";
 			this.UseAutoRoutingLineStyleCheckBox.Size = new System.Drawing.Size(147, 17);
 			this.UseAutoRoutingLineStyleCheckBox.TabIndex = 9;
 			this.UseAutoRoutingLineStyleCheckBox.Text = "Use auto-routing line style";
 			this.UseAutoRoutingLineStyleCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// FlipConnectorsCheckBox
+			// 
+			this.FlipConnectorsCheckBox.AutoSize = true;
+			this.FlipConnectorsCheckBox.Location = new System.Drawing.Point(20, 102);
+			this.FlipConnectorsCheckBox.Name = "FlipConnectorsCheckBox";
+			this.FlipConnectorsCheckBox.Size = new System.Drawing.Size(98, 17);
+			this.FlipConnectorsCheckBox.TabIndex = 11;
+			this.FlipConnectorsCheckBox.Text = "Flip connectors";
+			this.FlipConnectorsCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
@@ -143,5 +155,6 @@ namespace DbDiagramGen.Forms
 		private System.Windows.Forms.Panel MainPanel;
 		private System.Windows.Forms.CheckBox UseAutoRoutingLineStyleCheckBox;
 		private System.Windows.Forms.Button LoadButton;
+		private System.Windows.Forms.CheckBox FlipConnectorsCheckBox;
 	}
 }
